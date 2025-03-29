@@ -9,7 +9,8 @@ public class EstablishmentRepositoryGateway implements EstablishmentRepository {
   private EstablishmentRepositoryJpa establishmentRepositoryJpa;
   private EstablishmentMapper establishmentMapper;
 
-  public EstablishmentRepositoryGateway(EstablishmentRepositoryJpa establishmentRepositoryJpa, EstablishmentMapper establishmentMapper) {
+  public EstablishmentRepositoryGateway(EstablishmentRepositoryJpa establishmentRepositoryJpa,
+      EstablishmentMapper establishmentMapper) {
     this.establishmentRepositoryJpa = establishmentRepositoryJpa;
     this.establishmentMapper = establishmentMapper;
   }
@@ -17,6 +18,9 @@ public class EstablishmentRepositoryGateway implements EstablishmentRepository {
   @Override
   public Establishment findEstablishmentByCnpj(String cnpj) {
     EstablishmentEntity establishmentEntity = this.establishmentRepositoryJpa.findByCnpj(cnpj);
+    if (establishmentEntity == null) {
+      return null;
+    }
     return this.establishmentMapper.toDomain(establishmentEntity);
   }
 
@@ -25,5 +29,4 @@ public class EstablishmentRepositoryGateway implements EstablishmentRepository {
     EstablishmentEntity establishmentEntity = this.establishmentMapper.toEntity(establishment);
     return this.establishmentMapper.toDomain(this.establishmentRepositoryJpa.save(establishmentEntity));
   }
-  
 }
