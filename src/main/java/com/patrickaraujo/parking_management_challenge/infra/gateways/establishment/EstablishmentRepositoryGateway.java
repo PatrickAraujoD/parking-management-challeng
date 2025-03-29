@@ -40,4 +40,9 @@ public class EstablishmentRepositoryGateway implements EstablishmentRepository {
     }
     return Optional.empty();
   }
+
+  @Override
+  public void deleteById(String id) {
+    this.establishmentRepositoryJpa.deleteById(id);
+  }
 }
