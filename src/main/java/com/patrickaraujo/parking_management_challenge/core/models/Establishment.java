@@ -3,12 +3,12 @@ package com.patrickaraujo.parking_management_challenge.core.models;
 public class Establishment {
   private String name;
   private String cnpj;
-  private String address;
+  private Address address;
   private String phone;
   private int number_of_spaces_motorcycles;
   private int number_of_spaces_cars;
 
-  public Establishment(String name, String cnpj, String address, String phone, int number_of_spaces_motorcycles, int number_of_spaces_cars) {
+  public Establishment(String name, String cnpj, Address address, String phone, int number_of_spaces_motorcycles, int number_of_spaces_cars) {
     this.name = name;
     this.cnpj = cnpj;
     this.address = address;
@@ -33,11 +33,11 @@ public class Establishment {
     this.cnpj = cnpj;
   }
 
-  public String getAddress() {
+  public Address getAddress() {
     return address;
   }
 
-  public void setAddress(String address) {
+  public void setAddress(Address address) {
     this.address = address;
   }
 
@@ -64,5 +64,4 @@ public class Establishment {
   public void setNumber_of_spaces_cars(int number_of_spaces_cars) {
     this.number_of_spaces_cars = number_of_spaces_cars;
   }
-
 }
