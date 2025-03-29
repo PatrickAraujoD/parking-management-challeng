@@ -8,4 +8,5 @@ public interface EstablishmentRepository {
   Establishment findEstablishmentByCnpj(String cnpj);
   Establishment save(Establishment establishment);
   Optional<Establishment> findById(String id);
+  void deleteById(String id);
 }
