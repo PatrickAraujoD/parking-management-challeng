@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Configuration;
 
 import com.patrickaraujo.parking_management_challenge.adapters.EstablishmentRepository;
 import com.patrickaraujo.parking_management_challenge.application.establishment.AddEstablishmentService;
+import com.patrickaraujo.parking_management_challenge.application.establishment.DeleteEstablishmentByIdService;
 import com.patrickaraujo.parking_management_challenge.application.establishment.GetEstablishmentService;
 import com.patrickaraujo.parking_management_challenge.application.establishment.UpdateEstablishmentService;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.AddEstablishment;
+import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.DeleteEstablishmentById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.GetEstablishmentById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.UpdateEstablishment;
 import com.patrickaraujo.parking_management_challenge.infra.gateways.address.AddressMapper;
@@ -45,5 +47,10 @@ public class EstablishmentConfiguration {
   @Bean
   public GetEstablishmentById getEstablishmentById(EstablishmentRepository establishmentRepository) {
     return new GetEstablishmentService(establishmentRepository);
+  }
+
+  @Bean
+  public DeleteEstablishmentById deleteEstablishmentById(EstablishmentRepository establishmentRepository) {
+    return new DeleteEstablishmentByIdService(establishmentRepository);
   }
 }
