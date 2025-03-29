@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.patrickaraujo.parking_management_challenge.core.exceptions.AlreadyExistsException;
+import com.patrickaraujo.parking_management_challenge.core.exceptions.EstablishmentNotFoundException;
 import com.patrickaraujo.parking_management_challenge.infra.dtos.exception.ExceptionDTO;
 
 @ControllerAdvice
@@ -17,5 +18,10 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ExceptionDTO> handleGlobalException(Exception exception) {
     return ResponseEntity.badRequest().body(new ExceptionDTO("An error has occurred. Try again later", "500"));
+  }
+
+  @ExceptionHandler(EstablishmentNotFoundException.class)
+  public ResponseEntity<ExceptionDTO> handleEstablishmentNotFoundException(EstablishmentNotFoundException exception) {
+    return ResponseEntity.badRequest().body(new ExceptionDTO(exception.getMessage(), "400"));
   }
 }
