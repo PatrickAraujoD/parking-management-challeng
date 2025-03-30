@@ -45,7 +45,7 @@ public class EstablishmentController {
 
   @PutMapping
   public ResponseEntity<Void> updateEstablishment(@RequestBody @Validated EstablishmentDTO data) throws Exception {
-    this.updateEstablishment.update(data.cnpj(), data.name(), data.address(), data.phone(),
+    this.updateEstablishment.update(data.id(), data.cnpj(), data.name(), data.address(), data.phone(),
         data.numberOfSpacesMotorcycles(), data.numberOfSpacesCars());
     return new ResponseEntity<>(HttpStatus.OK);
   }

@@ -1,11 +1,13 @@
 package com.patrickaraujo.parking_management_challenge.application.establishment;
 
 import com.patrickaraujo.parking_management_challenge.adapters.EstablishmentRepository;
+import com.patrickaraujo.parking_management_challenge.core.exceptions.EstablishmentNotFoundException;
 import com.patrickaraujo.parking_management_challenge.core.models.Address;
 import com.patrickaraujo.parking_management_challenge.core.models.Establishment;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.UpdateEstablishment;
 
 import java.lang.reflect.Field;
+import java.util.Optional;
 
 public class UpdateEstablishmentService implements UpdateEstablishment {
   private EstablishmentRepository establishmentRepository;
@@ -15,20 +17,22 @@ public class UpdateEstablishmentService implements UpdateEstablishment {
   }
 
   @Override
-  public void update(String cnpj, String name, Address address, String phone, Integer numberOfSpaceMotorcycles,
+  public void update(String id, String cnpj, String name, Address address, String phone,
+      Integer numberOfSpaceMotorcycles,
       Integer numberOfSpaceCars) throws Exception {
-    Establishment establishmentExists = this.establishmentRepository.findEstablishmentByCnpj(cnpj);
-    if (establishmentExists != null) {
-      Establishment updatedEstablishment = new Establishment();
-      updatedEstablishment.setName(name);
-      updatedEstablishment.setCnpj(cnpj);
-      updatedEstablishment.setAddress(address);
-      updatedEstablishment.setPhone(phone);
-      updatedEstablishment.setNumber_of_spaces_motorcycles(numberOfSpaceMotorcycles);
-      updatedEstablishment.setNumber_of_spaces_cars(numberOfSpaceCars);
-      this.copyNonNullFields(updatedEstablishment, establishmentExists);
-      this.establishmentRepository.save(establishmentExists);
+    Optional<Establishment> establishmentExists = this.establishmentRepository.findById(id);
+    if (establishmentExists.isEmpty()) {
+      throw new EstablishmentNotFoundException("Establishment not found with id: " + id);
     }
+    Establishment updatedEstablishment = new Establishment();
+    updatedEstablishment.setName(name);
+    updatedEstablishment.setCnpj(cnpj);
+    updatedEstablishment.setAddress(address);
+    updatedEstablishment.setPhone(phone);
+    updatedEstablishment.setNumber_of_spaces_motorcycles(numberOfSpaceMotorcycles);
+    updatedEstablishment.setNumber_of_spaces_cars(numberOfSpaceCars);
+    this.copyNonNullFields(updatedEstablishment, establishmentExists.get());
+    this.establishmentRepository.save(establishmentExists.get());
   }
 
   @Override
