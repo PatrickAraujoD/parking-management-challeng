@@ -15,11 +15,11 @@ public class EstablishmentMapper {
 
   EstablishmentEntity toEntity(Establishment establishmentDomain) {
     AddressEntity addressEntity = this.addressMapper.toEntity(establishmentDomain.getAddress());
-    return new EstablishmentEntity(establishmentDomain.getId(), establishmentDomain.getName(), establishmentDomain.getCnpj(), addressEntity, establishmentDomain.getPhone(), establishmentDomain.getNumber_of_spaces_motorcycles(), establishmentDomain.getNumber_of_spaces_cars());
+    return new EstablishmentEntity(establishmentDomain.getId(), establishmentDomain.getName(), establishmentDomain.getCnpj(), addressEntity, establishmentDomain.getPhone(), establishmentDomain.getNumberOfSpacesMotorcycles(), establishmentDomain.getNumberOfSpacesCars());
   } 
 
   Establishment toDomain(EstablishmentEntity establishmentEntity) {
     Address address = this.addressMapper.toModel(establishmentEntity.getAddress());
-    return new Establishment(establishmentEntity.getId(), establishmentEntity.getName(), establishmentEntity.getCnpj(), address, establishmentEntity.getPhone(), establishmentEntity.getNumber_of_spaces_motorcycles(), establishmentEntity.getNumber_of_spaces_cars());
+    return new Establishment(establishmentEntity.getId(), establishmentEntity.getName(), establishmentEntity.getCnpj(), address, establishmentEntity.getPhone(), establishmentEntity.getNumberOfSpacesMotorcycles(), establishmentEntity.getNumberOfSpacesCars());
   }
 }

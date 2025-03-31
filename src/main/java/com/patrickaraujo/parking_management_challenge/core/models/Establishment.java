@@ -6,29 +6,29 @@ public class Establishment {
   private String cnpj;
   private Address address;
   private String phone;
-  private int number_of_spaces_motorcycles;
-  private int number_of_spaces_cars;
+  private int numberOfSpacesMotorcycles;
+  private int numberOfSpacesCars;
 
   public Establishment(String id, String name, String cnpj, Address address, String phone,
-      int number_of_spaces_motorcycles,
-      int number_of_spaces_cars) {
+      int numberOfSpacesMotorcycles,
+      int numberOfSpacesCars) {
     this.id = id;
     this.name = name;
     this.cnpj = cnpj;
     this.address = address;
     this.phone = phone;
-    this.number_of_spaces_motorcycles = number_of_spaces_motorcycles;
-    this.number_of_spaces_cars = number_of_spaces_cars;
+    this.numberOfSpacesMotorcycles = numberOfSpacesMotorcycles;
+    this.numberOfSpacesCars = numberOfSpacesCars;
   }
 
-  public Establishment(String name, String cnpj, Address address, String phone, int number_of_spaces_motorcycles,
-      int number_of_spaces_cars) {
+  public Establishment(String name, String cnpj, Address address, String phone, int numberOfSpacesMotorcycles,
+      int numberOfSpacesCars) {
     this.name = name;
     this.cnpj = cnpj;
     this.address = address;
     this.phone = phone;
-    this.number_of_spaces_motorcycles = number_of_spaces_motorcycles;
-    this.number_of_spaces_cars = number_of_spaces_cars;
+    this.numberOfSpacesMotorcycles = numberOfSpacesMotorcycles;
+    this.numberOfSpacesCars = numberOfSpacesCars;
   }
 
   public Establishment() {
@@ -66,20 +66,20 @@ public class Establishment {
     this.phone = phone;
   }
 
-  public int getNumber_of_spaces_motorcycles() {
-    return number_of_spaces_motorcycles;
+  public int getNumberOfSpacesMotorcycles() {
+    return this.numberOfSpacesMotorcycles;
   }
 
-  public void setNumber_of_spaces_motorcycles(int number_of_spaces_motorcycles) {
-    this.number_of_spaces_motorcycles = number_of_spaces_motorcycles;
+  public void setNumberOfSpacesMotorcycles(int numberOfSpacesMotorcycles) {
+    this.numberOfSpacesMotorcycles = numberOfSpacesMotorcycles;
   }
 
-  public int getNumber_of_spaces_cars() {
-    return number_of_spaces_cars;
+  public int getNumberOfSpacesCars() {
+    return numberOfSpacesCars;
   }
 
-  public void setNumber_of_spaces_cars(int number_of_spaces_cars) {
-    this.number_of_spaces_cars = number_of_spaces_cars;
+  public void setNumberOfSpacesCars(int numberOfSpacesCars) {
+    this.numberOfSpacesCars = numberOfSpacesCars;
   }
 
   public String getId() {

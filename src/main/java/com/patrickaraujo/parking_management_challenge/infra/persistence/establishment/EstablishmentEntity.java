@@ -2,6 +2,7 @@ package com.patrickaraujo.parking_management_challenge.infra.persistence.establi
 
 import com.patrickaraujo.parking_management_challenge.infra.persistence.address.AddressEntity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,15 +29,17 @@ public class EstablishmentEntity {
   private String cnpj;
   private AddressEntity address;
   private String phone;
-  private int number_of_spaces_motorcycles;
-  private int number_of_spaces_cars;
+  @Column(name = "number_of_spaces_motorcycles")
+  private int numberOfSpacesMotorcycles;
+  @Column(name = "number_of_spaces_cars")
+  private int numberOfSpacesCars;
 
-  public EstablishmentEntity(String name, AddressEntity address, String cnpj, String phone, int number_of_spaces_motorcycles, int number_of_spaces_cars) {
+  public EstablishmentEntity(String name, AddressEntity address, String cnpj, String phone, int numberOfSpacesMotorcycles, int numberOfSpacesCars) {
     this.name = name;
     this.address = address;
     this.cnpj = cnpj;
     this.phone = phone;
-    this.number_of_spaces_motorcycles = number_of_spaces_motorcycles;
-    this.number_of_spaces_cars = number_of_spaces_cars;
+    this.numberOfSpacesMotorcycles = numberOfSpacesMotorcycles;
+    this.numberOfSpacesCars = numberOfSpacesCars;
   }
 }

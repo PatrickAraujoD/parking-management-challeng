@@ -29,8 +29,8 @@ public class UpdateEstablishmentService implements UpdateEstablishment {
     updatedEstablishment.setCnpj(cnpj);
     updatedEstablishment.setAddress(address);
     updatedEstablishment.setPhone(phone);
-    updatedEstablishment.setNumber_of_spaces_motorcycles(numberOfSpaceMotorcycles);
-    updatedEstablishment.setNumber_of_spaces_cars(numberOfSpaceCars);
+    updatedEstablishment.setNumberOfSpacesMotorcycles(numberOfSpaceMotorcycles);
+    updatedEstablishment.setNumberOfSpacesCars(numberOfSpaceCars);
     this.copyNonNullFields(updatedEstablishment, establishmentExists.get());
     this.establishmentRepository.save(establishmentExists.get());
   }
