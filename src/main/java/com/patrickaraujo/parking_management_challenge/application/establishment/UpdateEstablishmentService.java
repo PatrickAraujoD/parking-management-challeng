@@ -17,7 +17,7 @@ public class UpdateEstablishmentService implements UpdateEstablishment {
   }
 
   @Override
-  public void update(String id, String cnpj, String name, Address address, String phone,
+  public void update(String id, String name, Address address, String phone,
       Integer numberOfSpaceMotorcycles,
       Integer numberOfSpaceCars) throws Exception {
     Optional<Establishment> establishmentExists = this.establishmentRepository.findById(id);
@@ -26,7 +26,6 @@ public class UpdateEstablishmentService implements UpdateEstablishment {
     }
     Establishment updatedEstablishment = new Establishment();
     updatedEstablishment.setName(name);
-    updatedEstablishment.setCnpj(cnpj);
     updatedEstablishment.setAddress(address);
     updatedEstablishment.setPhone(phone);
     updatedEstablishment.setNumberOfSpacesMotorcycles(numberOfSpaceMotorcycles);
