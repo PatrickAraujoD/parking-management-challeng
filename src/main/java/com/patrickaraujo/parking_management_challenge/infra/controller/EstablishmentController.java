@@ -51,7 +51,7 @@ public class EstablishmentController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Establishment> getEstaEntityById(@PathVariable String id) {
+  public ResponseEntity<Establishment> getEstablishmentEntityById(@PathVariable String id) {
     Establishment establishment = this.getEstablishmentById.get(id);
     return ResponseEntity.ok().body(establishment);
   }
