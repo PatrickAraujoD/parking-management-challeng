@@ -2,6 +2,7 @@ package com.patrickaraujo.parking_management_challenge.infra.persistence.vehicle
 
 import com.patrickaraujo.parking_management_challenge.core.models.VehicleType;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,5 +29,6 @@ public class VehicleEntity {
   private String model;
   private String color;
   private String plate;
-  private VehicleType typeVehicle;
+  @Column(name = "vehicle_type")
+  private VehicleType vehicleType;
 }

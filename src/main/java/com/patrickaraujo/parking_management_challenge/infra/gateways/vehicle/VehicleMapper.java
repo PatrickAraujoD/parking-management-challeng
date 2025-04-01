@@ -5,7 +5,7 @@ import com.patrickaraujo.parking_management_challenge.infra.persistence.vehicle.
 
 public class VehicleMapper {
   public Vehicle toDomain(VehicleEntity vehicleEntity) {
-    return new Vehicle(vehicleEntity.getId(), vehicleEntity.getMark(), vehicleEntity.getModel(), vehicleEntity.getColor(),  vehicleEntity.getPlate(), vehicleEntity.getTypeVehicle());
+    return new Vehicle(vehicleEntity.getId(), vehicleEntity.getMark(), vehicleEntity.getModel(), vehicleEntity.getColor(),  vehicleEntity.getPlate(), vehicleEntity.getVehicleType());
   }  
 
   public VehicleEntity toEntity(Vehicle vehicle) {
