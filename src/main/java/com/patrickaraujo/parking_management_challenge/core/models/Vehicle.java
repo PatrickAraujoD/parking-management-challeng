@@ -1,6 +1,7 @@
 package com.patrickaraujo.parking_management_challenge.core.models;
 
 public class Vehicle {
+  private String id;
   private String mark;
   private String model;
   private String color;
@@ -14,6 +15,17 @@ public class Vehicle {
     this.plate = plate;
     this.typeVehicle = typeVehicle;
   }
+
+  public Vehicle(String id, String mark, String model, String color, String plate, VehicleType typeVehicle) {
+    this.id = id;
+    this.mark = mark;
+    this.model = model;
+    this.color = color;
+    this.plate = plate;
+    this.typeVehicle = typeVehicle;
+  }
+
+  public Vehicle() {}
 
   public String getMark() {
     return mark;
@@ -54,4 +66,14 @@ public class Vehicle {
   public void setTypeVehicle(VehicleType typeVehicle) {
     this.typeVehicle = typeVehicle;
   }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
 }
