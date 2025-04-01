@@ -8,4 +8,5 @@ public interface VehicleRepository {
   Optional<Vehicle> findById(String id);
   Optional<Vehicle> findByPlate(String plate);
   Vehicle save(Vehicle vehicle);
+  void deleteById(String id);
 }
