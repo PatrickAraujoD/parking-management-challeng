@@ -6,9 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import com.patrickaraujo.parking_management_challenge.adapters.VehicleRepository;
 import com.patrickaraujo.parking_management_challenge.application.vehicle.AddVehicleService;
 import com.patrickaraujo.parking_management_challenge.application.vehicle.DeleteVehicleService;
+import com.patrickaraujo.parking_management_challenge.application.vehicle.GetVehicleByIdService;
 import com.patrickaraujo.parking_management_challenge.application.vehicle.UpdateVehicleService;
 import com.patrickaraujo.parking_management_challenge.core.usecases.vehicles.AddVehicle;
 import com.patrickaraujo.parking_management_challenge.core.usecases.vehicles.DeleteVehicle;
+import com.patrickaraujo.parking_management_challenge.core.usecases.vehicles.GetVehicleById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.vehicles.UpdateVehicle;
 import com.patrickaraujo.parking_management_challenge.infra.gateways.vehicle.VehicleMapper;
 import com.patrickaraujo.parking_management_challenge.infra.gateways.vehicle.VehicleRepositoryGateway;
@@ -24,6 +26,11 @@ public class VehicleConfiguration {
   @Bean
   public UpdateVehicle updateVehicle(VehicleRepository vehicleRepository) {
     return new UpdateVehicleService(vehicleRepository);
+  }
+
+  @Bean
+  public GetVehicleById getVehicleById(VehicleRepository vehicleRepository) {
+    return new GetVehicleByIdService(vehicleRepository);
   }
 
   @Bean
