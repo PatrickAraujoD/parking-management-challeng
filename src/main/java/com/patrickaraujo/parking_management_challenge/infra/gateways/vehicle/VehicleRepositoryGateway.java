@@ -34,4 +34,9 @@ public class VehicleRepositoryGateway implements VehicleRepository {
     VehicleEntity newVehicleEntity = this.vehicleRepositoryJpa.save(vehicleEntity);
     return this.vehicleMapper.toDomain(newVehicleEntity);
   }
+
+  @Override
+  public void deleteById(String id) {
+    this.vehicleRepositoryJpa.deleteById(id); 
+  }
 }
