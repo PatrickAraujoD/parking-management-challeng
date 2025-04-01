@@ -17,7 +17,7 @@ public class AddVehicleService implements AddVehicle {
   @Override
   public Vehicle add(Vehicle vehicle) {
     Optional<Vehicle> vehicleExists = this.vehicleRepository.findByPlate(vehicle.getPlate());
-    if (vehicleExists.isEmpty()) {
+    if (vehicleExists.isPresent()) {
       throw new AlreadyExistsException("There is already a registered vehicle with an informed license plate");
     }
     Vehicle newVehicle = this.vehicleRepository.save(vehicle);
