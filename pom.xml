@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.patrickaraujo</groupId>
 	<artifactId>parking-management-challenge</artifactId>
-	<version>1.5.0</version>
+	<version>1.6.0</version>
 	<name>parking-management-challenge</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
