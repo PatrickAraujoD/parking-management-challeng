@@ -8,10 +8,14 @@ import com.patrickaraujo.parking_management_challenge.application.establishment.
 import com.patrickaraujo.parking_management_challenge.application.establishment.DeleteEstablishmentByIdService;
 import com.patrickaraujo.parking_management_challenge.application.establishment.GetEstablishmentService;
 import com.patrickaraujo.parking_management_challenge.application.establishment.UpdateEstablishmentService;
+import com.patrickaraujo.parking_management_challenge.application.establishment.VehicleEntryControlService;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.AddEstablishment;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.DeleteEstablishmentById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.GetEstablishmentById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.UpdateEstablishment;
+import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.VehicleEntryControl;
+import com.patrickaraujo.parking_management_challenge.core.usecases.vehicles.GetVehicleById;
+import com.patrickaraujo.parking_management_challenge.core.usecases.vehicles.UpdateParkingStatus;
 import com.patrickaraujo.parking_management_challenge.infra.gateways.address.AddressMapper;
 import com.patrickaraujo.parking_management_challenge.infra.gateways.establishment.EstablishmentMapper;
 import com.patrickaraujo.parking_management_challenge.infra.gateways.establishment.EstablishmentRepositoryGateway;
@@ -25,7 +29,8 @@ public class EstablishmentConfiguration {
   }
 
   @Bean
-  public EstablishmentRepository establishmentRepository(EstablishmentRepositoryJpa establishmentRepositoryJpa, EstablishmentMapper establishmentMapper) {
+  public EstablishmentRepository establishmentRepository(EstablishmentRepositoryJpa establishmentRepositoryJpa,
+      EstablishmentMapper establishmentMapper) {
     return new EstablishmentRepositoryGateway(establishmentRepositoryJpa, establishmentMapper);
   }
 
@@ -42,6 +47,15 @@ public class EstablishmentConfiguration {
   @Bean
   public UpdateEstablishment updateEstablishment(EstablishmentRepository establishmentRepository) {
     return new UpdateEstablishmentService(establishmentRepository);
+  }
+
+  @Bean
+  public VehicleEntryControl vehicleEntryControl(EstablishmentRepository establishmentRepository,
+      GetEstablishmentById getEstablishmentById, GetVehicleById getVehicleById,
+      UpdateParkingStatus updateParkingStatus) {
+    return new VehicleEntryControlService(establishmentRepository,
+        getEstablishmentById, getVehicleById,
+        updateParkingStatus);
   }
 
   @Bean

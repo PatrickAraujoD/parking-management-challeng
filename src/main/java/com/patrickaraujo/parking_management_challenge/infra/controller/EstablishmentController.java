@@ -17,7 +17,9 @@ import com.patrickaraujo.parking_management_challenge.core.usecases.establishmen
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.DeleteEstablishmentById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.GetEstablishmentById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.UpdateEstablishment;
+import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.VehicleEntryControl;
 import com.patrickaraujo.parking_management_challenge.infra.dtos.establishment.EstablishmentDTO;
+import com.patrickaraujo.parking_management_challenge.infra.dtos.establishment.ManageVacanciesDTO;
 
 @RestController
 @RequestMapping("/establishment")
@@ -26,13 +28,16 @@ public class EstablishmentController {
   private final UpdateEstablishment updateEstablishment;
   private final GetEstablishmentById getEstablishmentById;
   private final DeleteEstablishmentById deleteEstablishmentById;
+  private final VehicleEntryControl vehicleEntryControl;
 
   public EstablishmentController(AddEstablishment addEstablishment, UpdateEstablishment updateEstablishment,
-      GetEstablishmentById getEstablishmentById, DeleteEstablishmentById deleteEstablishmentById) {
+      GetEstablishmentById getEstablishmentById, DeleteEstablishmentById deleteEstablishmentById,
+      VehicleEntryControl vehicleEntryControl) {
     this.addEstablishment = addEstablishment;
     this.updateEstablishment = updateEstablishment;
     this.getEstablishmentById = getEstablishmentById;
     this.deleteEstablishmentById = deleteEstablishmentById;
+    this.vehicleEntryControl = vehicleEntryControl;
   }
 
   @PostMapping
@@ -60,5 +65,11 @@ public class EstablishmentController {
   public ResponseEntity<Void> deleteEstablishment(@PathVariable String id) {
     this.deleteEstablishmentById.delete(id);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
+  @PutMapping("/vehicle-entry")
+  public ResponseEntity<String> manageVacancies(@RequestBody ManageVacanciesDTO data) {
+    String response = this.vehicleEntryControl.control(data.idEstablishment(), data.idVehicle());
+    return ResponseEntity.ok().body(response);
   }
 }
