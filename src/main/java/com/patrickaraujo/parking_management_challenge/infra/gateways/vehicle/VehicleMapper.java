@@ -5,10 +5,10 @@ import com.patrickaraujo.parking_management_challenge.infra.persistence.vehicle.
 
 public class VehicleMapper {
   public Vehicle toDomain(VehicleEntity vehicleEntity) {
-    return new Vehicle(vehicleEntity.getId(), vehicleEntity.getMark(), vehicleEntity.getModel(), vehicleEntity.getColor(),  vehicleEntity.getPlate(), vehicleEntity.getVehicleType());
+    return new Vehicle(vehicleEntity.getId(), vehicleEntity.getMark(), vehicleEntity.getModel(), vehicleEntity.getColor(),  vehicleEntity.getPlate(), vehicleEntity.getVehicleType(), vehicleEntity.isParked());
   }  
 
   public VehicleEntity toEntity(Vehicle vehicle) {
-    return new VehicleEntity(vehicle.getId(), vehicle.getMark(), vehicle.getModel(), vehicle.getColor(), vehicle.getPlate(), vehicle.getTypeVehicle());
+    return new VehicleEntity(vehicle.getId(), vehicle.getMark(), vehicle.getModel(), vehicle.getColor(), vehicle.getPlate(), vehicle.getTypeVehicle(), vehicle.isParked());
   }
 }

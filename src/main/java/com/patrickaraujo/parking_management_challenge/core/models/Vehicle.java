@@ -7,22 +7,25 @@ public class Vehicle {
   private String color;
   private String plate;
   private VehicleType typeVehicle;
+  private boolean isParked;
 
-  public Vehicle(String mark, String model, String color, String plate, VehicleType typeVehicle) {
+  public Vehicle(String mark, String model, String color, String plate, VehicleType typeVehicle, boolean isParked) {
     this.mark = mark;
     this.model = model;
     this.color = color;
     this.plate = plate;
     this.typeVehicle = typeVehicle;
+    this.isParked = isParked;
   }
 
-  public Vehicle(String id, String mark, String model, String color, String plate, VehicleType typeVehicle) {
+  public Vehicle(String id, String mark, String model, String color, String plate, VehicleType typeVehicle, boolean isParked) {
     this.id = id;
     this.mark = mark;
     this.model = model;
     this.color = color;
     this.plate = plate;
     this.typeVehicle = typeVehicle;
+    this.isParked = isParked;
   }
 
   public Vehicle() {}
@@ -75,5 +78,12 @@ public class Vehicle {
     this.id = id;
   }
 
+  public boolean isParked() {
+    return isParked;
+  }
+
+  public void setParked(boolean isParked) {
+    this.isParked = isParked;
+  }
 
 }

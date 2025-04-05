@@ -36,7 +36,7 @@ public class VehicleController {
 
   @PostMapping
   public ResponseEntity<Void> createVehicle(@RequestBody VehicleDTO data) {
-    Vehicle newVehicle = new Vehicle(data.mark(), data.model(), data.color(), data.plate(), data.vehicleType());
+    Vehicle newVehicle = new Vehicle(data.mark(), data.model(), data.color(), data.plate(), data.vehicleType(), data.isParked());
     this.addVehicle.add(newVehicle);
     return ResponseEntity.ok().build();
   }
