@@ -31,4 +31,6 @@ public class VehicleEntity {
   private String plate;
   @Column(name = "vehicle_type")
   private VehicleType vehicleType;
+  @Column(name = "is_parked")
+  private boolean isParked;
 }
