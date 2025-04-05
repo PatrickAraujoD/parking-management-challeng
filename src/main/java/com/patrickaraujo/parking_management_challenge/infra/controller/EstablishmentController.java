@@ -18,6 +18,7 @@ import com.patrickaraujo.parking_management_challenge.core.usecases.establishmen
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.GetEstablishmentById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.UpdateEstablishment;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.VehicleEntryControl;
+import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.VehicleExitControl;
 import com.patrickaraujo.parking_management_challenge.infra.dtos.establishment.EstablishmentDTO;
 import com.patrickaraujo.parking_management_challenge.infra.dtos.establishment.ManageVacanciesDTO;
 
@@ -29,15 +30,17 @@ public class EstablishmentController {
   private final GetEstablishmentById getEstablishmentById;
   private final DeleteEstablishmentById deleteEstablishmentById;
   private final VehicleEntryControl vehicleEntryControl;
+  private final VehicleExitControl vehicleExitControl;
 
   public EstablishmentController(AddEstablishment addEstablishment, UpdateEstablishment updateEstablishment,
       GetEstablishmentById getEstablishmentById, DeleteEstablishmentById deleteEstablishmentById,
-      VehicleEntryControl vehicleEntryControl) {
+      VehicleEntryControl vehicleEntryControl, VehicleExitControl vehicleExitControl) {
     this.addEstablishment = addEstablishment;
     this.updateEstablishment = updateEstablishment;
     this.getEstablishmentById = getEstablishmentById;
     this.deleteEstablishmentById = deleteEstablishmentById;
     this.vehicleEntryControl = vehicleEntryControl;
+    this.vehicleExitControl = vehicleExitControl;
   }
 
   @PostMapping
@@ -70,6 +73,12 @@ public class EstablishmentController {
   @PutMapping("/vehicle-entry")
   public ResponseEntity<String> manageVacancies(@RequestBody ManageVacanciesDTO data) {
     String response = this.vehicleEntryControl.control(data.idEstablishment(), data.idVehicle());
+    return ResponseEntity.ok().body(response);
+  }
+
+  @PutMapping("/vehicle-exit")
+  public ResponseEntity<String> manageVehicleDeparture(@RequestBody ManageVacanciesDTO data) {
+    String response = this.vehicleExitControl.control(data.idEstablishment(), data.idVehicle());
     return ResponseEntity.ok().body(response);
   }
 }

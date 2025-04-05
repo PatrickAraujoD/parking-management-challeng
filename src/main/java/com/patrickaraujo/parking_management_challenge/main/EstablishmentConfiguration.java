@@ -9,11 +9,13 @@ import com.patrickaraujo.parking_management_challenge.application.establishment.
 import com.patrickaraujo.parking_management_challenge.application.establishment.GetEstablishmentService;
 import com.patrickaraujo.parking_management_challenge.application.establishment.UpdateEstablishmentService;
 import com.patrickaraujo.parking_management_challenge.application.establishment.VehicleEntryControlService;
+import com.patrickaraujo.parking_management_challenge.application.establishment.VehicleExitControlService;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.AddEstablishment;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.DeleteEstablishmentById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.GetEstablishmentById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.UpdateEstablishment;
 import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.VehicleEntryControl;
+import com.patrickaraujo.parking_management_challenge.core.usecases.establishment.VehicleExitControl;
 import com.patrickaraujo.parking_management_challenge.core.usecases.vehicles.GetVehicleById;
 import com.patrickaraujo.parking_management_challenge.core.usecases.vehicles.UpdateParkingStatus;
 import com.patrickaraujo.parking_management_challenge.infra.gateways.address.AddressMapper;
@@ -56,6 +58,14 @@ public class EstablishmentConfiguration {
     return new VehicleEntryControlService(establishmentRepository,
         getEstablishmentById, getVehicleById,
         updateParkingStatus);
+  }
+
+  @Bean
+  public VehicleExitControl vehicleExitControl(EstablishmentRepository establishmentRepository,
+      GetEstablishmentById getEstablishmentById, GetVehicleById getVehicleById,
+      UpdateParkingStatus updateParkingStatus) {
+    return new VehicleExitControlService(getVehicleById, getEstablishmentById, updateParkingStatus,
+        establishmentRepository);
   }
 
   @Bean

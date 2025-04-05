@@ -9,6 +9,7 @@ import com.patrickaraujo.parking_management_challenge.core.exceptions.Establishm
 import com.patrickaraujo.parking_management_challenge.core.exceptions.VacanciesUnavailableException;
 import com.patrickaraujo.parking_management_challenge.core.exceptions.VehicleIsParkedException;
 import com.patrickaraujo.parking_management_challenge.core.exceptions.VehicleNotFoundException;
+import com.patrickaraujo.parking_management_challenge.core.exceptions.VehicleNotParkedException;
 import com.patrickaraujo.parking_management_challenge.infra.dtos.exception.ExceptionDTO;
 
 @ControllerAdvice
@@ -40,6 +41,11 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(VacanciesUnavailableException.class)
   public ResponseEntity<ExceptionDTO> handleVacanciesUnavailableException(VacanciesUnavailableException exception) {
+    return ResponseEntity.badRequest().body(new ExceptionDTO(exception.getMessage(), "400"));
+  }
+
+  @ExceptionHandler(VehicleNotParkedException.class)
+  public ResponseEntity<ExceptionDTO> handleVehicleNotParkedException(VehicleNotParkedException exception) {
     return ResponseEntity.badRequest().body(new ExceptionDTO(exception.getMessage(), "400"));
   }
 }
